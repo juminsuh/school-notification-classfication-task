@@ -110,3 +110,91 @@
 2. get_cosine_schedule_with_warmup을 활용한 learning rate scheduling: 학습 초기 단계에서 학습율을 점진적으로 증가시키는 warming-up step을 적용한 후, cosine 형태로 학습율을 점차 감소시키는 방식 
 3. Layer-wise Learning Rate Decay(LLRD) 적용: 모델의 각 레이어마다 다른 학습율을 적용시키는 기법으로, 상위 레이어는 보다 구체적인 의미 / 테스크 특화 정보를 담고 있고 하위 레이어는 기본적은 문법, 어휘, 구조적 정보 등을 담고 있음. 따라서 하위 레이어에서는 작은 learning rate로 일반적이고 기본적인 구조를 학습한 상태를 유지하고 상위 레이어에서는 높은 learning rate로 테스크에 특화되도록 파라미터가 신속하게 업데이트되어야 함. → 하위 6개 layer는 learning rate로 0.1, 상위 6개 layer는 learning rate로 0.5를 가짐
 4. LLRD를 적용한 모델이 그렇지 않은 모델보다 outperformed
+
+## Hyperparameters Tuning
+
+# 파인튜닝 기록 - multilingual bert
+
+## 사용 모델
+
+---
+
+[google-bert/bert-base-multilingual-cased · Hugging Face](https://huggingface.co/google-bert/bert-base-multilingual-cased)
+
+## 하이퍼파라미터 튜닝
+
+---
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 2e-5 | 3 | 0.1 | 10 | 0.90020 | 32 |
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/f8de55fd-65d8-43a1-b35d-295778d6ffa7/image.png)
+
+![BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/ed7808da-f587-463c-b3c0-b8b68032f9f0/image.png)
+
+BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 1e-4 | 3 | 0.1 | 4 | 0.87478 | 32 |
+
+![초기 learning rate가 너무 컸던 것으로 예상. 또한 에폭이 4인데 step size가 3이므로 lr scheduling이 거의 효과가 없었던 듯. ](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/baa7f88e-86e9-498b-8aad-034359de5fef/image.png)
+
+초기 learning rate가 너무 컸던 것으로 예상. 또한 에폭이 4인데 step size가 3이므로 lr scheduling이 거의 효과가 없었던 듯. 
+
+### 🌟
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 10 | **0.90974** | 32 |
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/c37aeea8-cb99-45b5-be63-f52c038943a2/image.png)
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/1a2db1bd-10e1-41ed-8344-b6148abf38ed/image.png)
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/1aaf541f-2203-4c28-b30c-b4a1cc6e3493/image.png)
+
+🌟 m-bert.pth: **0.90503**
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 4 | 0.90238 | 32 |
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/80eebeab-d826-43ce-bda1-a4997a87ca00/image.png)
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 3e-5 | 1 | 0.1 | 4 | 0.89697 | 32 |
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/3d784847-3766-40f6-a61a-053ecd11426b/image.png)
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 10 | 0.89912 | 16 |
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/84a1c1c6-e80a-4c79-8498-e9dee6e95e18/image.png)
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 10 | 0.89540 | 64 |
+
+![배치 사이즈는 32가 적당한 걸로](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/5c3cd70a-b3ff-481e-bbb7-cd9cf66148ac/image.png)
+
+배치 사이즈는 32가 적당한 걸로
+
+|  | 사용 여부 | 종류 | base_lr(초기 lr) | step size | gamma | epoch | 최고 성능(eval) | batch size | max_lr | mode |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | CyclicLR | 3e-8 | 3 | 0.5 | 10 | 0.89703 | 32 | 3e-5 | exp_range |
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/845c403f-6888-4834-9af7-e23f6a2bf206/image.png)
+
+|  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lr_scheduler | o | StepLR | 5e-5 | 3 | 0.1 | 10 | 0.90132 | 32 |
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/feaec48e-3506-4c76-8c12-2e31b3bdab6f/image.png)
+
+흠 확실히 epoch = 10, step_size = 3일 때 90프로 대가 나오는 듯
+
+### 🌟 Early Stopping 적용해서 과적합 막아보기
