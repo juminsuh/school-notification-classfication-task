@@ -129,9 +129,9 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 2e-5 | 3 | 0.1 | 10 | 0.90020 | 32 |
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/f8de55fd-65d8-43a1-b35d-295778d6ffa7/image.png)
+![image](https://github.com/user-attachments/assets/580654b7-0d71-4b9f-9223-7c1b828187f7)
 
-![BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/ed7808da-f587-463c-b3c0-b8b68032f9f0/image.png)
+![image 1](https://github.com/user-attachments/assets/fff31a3c-4d10-4db1-b0cd-8fd1eecea6ad)
 
 BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch
 
@@ -139,7 +139,7 @@ BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 1e-4 | 3 | 0.1 | 4 | 0.87478 | 32 |
 
-![초기 learning rate가 너무 컸던 것으로 예상. 또한 에폭이 4인데 step size가 3이므로 lr scheduling이 거의 효과가 없었던 듯. ](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/baa7f88e-86e9-498b-8aad-034359de5fef/image.png)
+![image 2](https://github.com/user-attachments/assets/9266cf69-ec2a-4b40-8f54-652cf72a26e1)
 
 초기 learning rate가 너무 컸던 것으로 예상. 또한 에폭이 4인데 step size가 3이므로 lr scheduling이 거의 효과가 없었던 듯. 
 
@@ -149,37 +149,38 @@ BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 10 | **0.90974** | 32 |
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/c37aeea8-cb99-45b5-be63-f52c038943a2/image.png)
+![image 3](https://github.com/user-attachments/assets/374e472b-cb6a-4afb-8fa7-1c1c09234899)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/1a2db1bd-10e1-41ed-8344-b6148abf38ed/image.png)
+![image 4](https://github.com/user-attachments/assets/00cd7c05-1633-4064-a0c6-ec7d1673be37)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/1aaf541f-2203-4c28-b30c-b4a1cc6e3493/image.png)
-
+![image 5](https://github.com/user-attachments/assets/f0a68d80-57b3-4060-b69e-6240b37d8bb0)
 🌟 m-bert.pth: **0.90503**
 
 |  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 4 | 0.90238 | 32 |
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/80eebeab-d826-43ce-bda1-a4997a87ca00/image.png)
+![image 6](https://github.com/user-attachments/assets/6d5fba5c-dfde-466b-af4a-ec3ca17fd7c8)
+
 
 |  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 3e-5 | 1 | 0.1 | 4 | 0.89697 | 32 |
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/3d784847-3766-40f6-a61a-053ecd11426b/image.png)
+![image 7](https://github.com/user-attachments/assets/dfbc1efa-16ba-4580-91f4-6c6a0930f795)
+
 
 |  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 10 | 0.89912 | 16 |
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/84a1c1c6-e80a-4c79-8498-e9dee6e95e18/image.png)
+![image 8](https://github.com/user-attachments/assets/f7544813-b6dd-4679-9d30-9f808607f5e7)
 
 |  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 3e-5 | 3 | 0.1 | 10 | 0.89540 | 64 |
 
-![배치 사이즈는 32가 적당한 걸로](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/5c3cd70a-b3ff-481e-bbb7-cd9cf66148ac/image.png)
+![image 9](https://github.com/user-attachments/assets/2b1f5dc2-96fb-40eb-b0d5-d48b52b59e87)
 
 배치 사이즈는 32가 적당한 걸로
 
@@ -187,15 +188,14 @@ BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | CyclicLR | 3e-8 | 3 | 0.5 | 10 | 0.89703 | 32 | 3e-5 | exp_range |
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/845c403f-6888-4834-9af7-e23f6a2bf206/image.png)
+![image 10](https://github.com/user-attachments/assets/4d30bd29-3305-48b9-99c4-d831aaf7496a)
 
 |  | 사용 여부 | 종류 | 초기 LR | step size | gamma | epoch | 최고 성능(eval) | batch size |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | lr_scheduler | o | StepLR | 5e-5 | 3 | 0.1 | 10 | 0.90132 | 32 |
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/d9b82f8a-8780-4270-9b3f-d0ad9032d100/feaec48e-3506-4c76-8c12-2e31b3bdab6f/image.png)
+![image 11](https://github.com/user-attachments/assets/93b84f6f-d3f3-4663-bca0-4632b415469e)
 
-흠 확실히 epoch = 10, step_size = 3일 때 90프로 대가 나오는 듯
 
 ### 🌟 Early Stopping 적용해서 과적합 막아보기
 
@@ -206,3 +206,6 @@ BERT 공식 문서에서 시도한 하이퍼파라미터 참고 - 4 epoch
 |   사용 여부 | patience_check| patience_limit|
 | --- | --- | --- |
 | o | 0 | 3 | 
+
+![image 12](https://github.com/user-attachments/assets/298262d7-edf8-46d4-b6b7-41c9e6c927ff)
+
